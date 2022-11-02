@@ -62,6 +62,8 @@
         let hobbies = [];
         let counter=1;
         var d=3;
+        var hobbie="";
+        var hobbie2="";
         
         function addnq(){
          name = document.getElementById('fname').value;
@@ -69,7 +71,7 @@
          var fetchname = document.getElementById('paragraph');
          fetchname.innerHTML = `<p>I,${name}, would like to apply for an internship at your organisation.<br>
          My Qualification is ${qualification}.<br>
-         My hobbies are ______, ________ & __________.<br>
+         My hobbies are ${hobbie2}.<br>
          Thanking you,<br>
          Your Sincerely<br>
            ${name}.</p>`;
@@ -80,7 +82,7 @@
             var id = "fh"+counter;
             if(counter==1)
             {
-                var hobbie = document.getElementById(id).value;
+                hobbie = document.getElementById(id).value;
                 fetchhobbies.innerHTML=`I,${name}, would like to apply for an internship at your organisation.<br>
                 My Qualification is ${qualification}.<br>
                 My hobbie is ${hobbie}.<br>
@@ -90,7 +92,7 @@
             }
             if(counter>1)
             {
-                var hobbie2="";
+                hobbie2="";
                 for(let i=1;i<=counter-1;i++)
                 {
                     id="fh"+i;
@@ -103,20 +105,7 @@
                     hobbie2 = hobbie2+","+document.getElementById(id).value;
                     }
                 }
-                // let lastindex=0
-                // for(let j=0;j<hobbie2.length;j++)
-                // {
-                //     if(hobbie2.charAt(j)==',')
-                //     {
-                //      lastindex = j;
-                //     }
-
-                // }
-
-
-                //     var firstpart = hobbie2.slice(0,lastindex);
-                //     var lastpart = hobbie2.slice(lastindex+1,hobbie2.length);
-                //     hobbie2 = firstpart+"&"+lastpart; 
+             
                 id="fh"+counter;
                   hobbie2=hobbie2+"&"+document.getElementById(id).value;
 
