@@ -12,7 +12,7 @@
             margin-left: 560px;
             background: #CCCCCC;
            height: 150px;
-           width: 400px;
+           width: 450px;
             position: relative;
             
             
@@ -24,19 +24,19 @@
     <center>
         <table border="4" id="myTable">
             <thread>
-                <tr>
+                <tr id="updatename">
                     <th>Name</th>
-                    <td><input type="text" name="fname" id="fname" oninput="add()"></td>
+                    <td><input type="text" name="fname" id="fname" oninput="addnq()"></td>
                 </tr>
             </thread>
             <tbody>
                 <tr>
                     <th>Qualification</th>
-                    <td><input type="text" name="fq" id="fq" oninput="add()"></td>
+                    <td><input type="text" name="fq" id="fq" oninput="addnq()"></td>
                 </tr>
                 <tr id="hh">
                     <th>Hobbie</th>
-                    <td><input type="text" name="fh" id="fh0" oninput="add()"></td>
+                    <td><input type="text" name="fh" id="fh1" oninput="addHobbies()"></td>
                 </tr>
                 <tr  id="btna">
                     <td><input type="button" name="button" id="btn" value="Add Hobbies" onclick="addrow()"></td>
@@ -57,135 +57,75 @@
     </div>
 
     <script>
-        let i=2;
-        let d=3;
-        var hobbies;
-        var result="";
-        var id;
-        arr=[];
-        let b=0;
-        let j;
-        let c=0;
-        var updatedata="";
-        var name;
-        var qualification;
-        function add(){
-             name = document.getElementById('fname').value;
-             qualification = document.getElementById('fq').value;
-            var result4;
-            id = "fh"+b;
-              hobbies= document.getElementById(id).value;
-              
-               arr[b]=hobbies;
-            
-            if(b==0)
-            {
-                
-                result="";
-                result=result+arr[b];
-            }
-            else 
-            {
-              
-            for(j=b;j<arr.length;j++)
-            {
-
-                if(arr[j]!=0 && j<1)
-                result=result+arr[j];
-                if(arr[j]!=0 && j>=1)
-                result=result+","+arr[j];
-                 for(let k=0;k<result.length;k++)
-               {
-                if(result.charAt(k)==',')
-                {
-                    c=k;
-                }
-
-               }
-            let result2=result.slice(0,c);
-            let result3=result.slice(c+1,result.length);
-            result4=result2+"&"+result3;
-            
-                
-
-            }
-        }
-            if(arr.length==1)
-           {
-            let fetch = document.getElementById('paragraph');
-            fetch.innerHTML=`I,${name}, would like to apply for an internship at your organisation.
-        My Qualification is ${qualification}.
-        My hobbie is ${result}.
-        Thanking you,
-        Your Sincerely
-        ${name}.`; 
-
-           }
-           else
-           {
-           
-    
-            let fetch = document.getElementById('paragraph');
-            fetch.innerHTML=`I,${name}, would like to apply for an internship at your organisation.
-        My Qualification is ${qualification}.
-        My hobbies are ${result4}.
-        Thanking you,
-        Your Sincerely
-        ${name}.`;            
-        }
-    }
-
-     function update(){
-        id="fh"+b;
-        updatedata=document.getElementById('fh0').value;
-        updatedata=updatedata+","+document.getElementById(id).value;
-        for(let k=0;k<updatedata.length;k++)
-               {
-                if(updatedata.charAt(k)==',')
-                {
-                    c=k;
-                }
-
-               }
-            let result2=updatedata.slice(0,c);
-            let result3=updatedata.slice(c+1,updatedata.length);
-            updatedata=result2+"&"+result3;
-
-      
-        let fetch1 = document.getElementById('paragraph');
-            fetch1.innerHTML=`I,${name}, would like to apply for an internship at your organisation.
-        My Qualification is ${qualification}.
-        My hobbies are ${updatedata}.
-        Thanking you,
-        Your Sincerely
-        ${name}.`; 
+        var name="";
+        var qualification="";
+        let hobbies = [];
+        let counter=1;
+        var d=3;
         
+        function addnq(){
+         name = document.getElementById('fname').value;
+         qualification = document.getElementById('fq').value;
+         var fetchname = document.getElementById('paragraph');
+         fetchname.innerHTML = `<p>I,${name}, would like to apply for an internship at your organisation.<br>
+         My Qualification is ${qualification}.<br>
+         My hobbies are ______, ________ & __________.<br>
+         Thanking you,<br>
+         Your Sincerely<br>
+           ${name}.</p>`;
+        }
+
+        function addHobbies(){
+            var fetchhobbies = document.getElementById('paragraph');
+            var id = "fh"+counter;
+            if(counter==1)
+            {
+                var hobbie = document.getElementById(id).value;
+                fetchhobbies.innerHTML=`I,${name}, would like to apply for an internship at your organisation.<br>
+                My Qualification is ${qualification}.<br>
+                My hobbie is ${hobbie}.<br>
+                Thanking you,<br>
+                Your Sincerely<br>
+                ${name}.`;
+            }
+            if(counter>1)
+            {
+                var hobbie2="";
+                for(let i=1;i<=counter;i++)
+                {
+                    id="fh"+i;
+                    if(i==1)
+                    {
+                        hobbie2 = hobbie2+document.getElementById(id).value  
+                    }
+                    else
+                    {
+                    hobbie2 = hobbie2+","+document.getElementById(id).value;
+                    }
+                }
+                fetchhobbies.innerHTML=`I,${name}, would like to apply for an internship at your organisation.<br>
+                My Qualification is ${qualification}.<br>
+                My hobbies are  ${hobbie2}.<br>
+                Thanking you,<br>
+                Your Sincerely<br>
+                ${name}.`
 
 
-     }
-
-       
-
+            }
+            
         
-    
+            
+         
+
+        }
         function addrow(){
-            
             var table = document.getElementById("myTable");
             var row = table.insertRow(d);
             var cell1 = row.insertCell(0);
-            row.innerHTML=`<p>   </p><td><input type="text" name="fh" id="fh${i-1}" onchange="add()" oninput="update()"  placeholder="Add Hobbies..."  ></td>`;
-            
-            b++;
-            i++;
+            counter++;
+            row.innerHTML=`<p>   </p><td><input type="text" name="fh" id="fh${counter}" oninput="addHobbies()" placeholder="Add Hobbies..."  ></td>`;
             d++;
-            
-
-            
-            
-
         }
-
-
     </script>
     
 </body>
