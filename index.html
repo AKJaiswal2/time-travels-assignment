@@ -103,6 +103,23 @@
                     hobbie2 = hobbie2+","+document.getElementById(id).value;
                     }
                 }
+                let lastindex=0
+                for(let j=0;j<hobbie2.length;j++)
+                {
+                    if(hobbie2.charAt(j)==',')
+                    {
+                     lastindex = j;
+                    }
+
+                }
+
+
+                    var firstpart = hobbie2.slice(0,lastindex);
+                    var lastpart = hobbie2.slice(lastindex+1,hobbie2.length);
+                    hobbie2 = firstpart+"&"+lastpart; 
+
+
+
                 fetchhobbies.innerHTML=`I,${name}, would like to apply for an internship at your organisation.<br>
                 My Qualification is ${qualification}.<br>
                 My hobbies are  ${hobbie2}.<br>
