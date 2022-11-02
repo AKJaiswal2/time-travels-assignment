@@ -36,7 +36,7 @@
                 </tr>
                 <tr id="hh">
                     <th>Hobbie</th>
-                    <td><input type="text" name="fh" id="fh1" oninput="addHobbies()"></td>
+                    <td><input type="text" name="fh" id="fh1" oninput="addnq()"></td>
                 </tr>
                 <tr  id="btna">
                     <td><input type="button" name="button" id="btn" value="Add Hobbies" onclick="addrow()"></td>
@@ -59,48 +59,27 @@
     <script>
         var name="";
         var qualification="";
-        let hobbies = [];
         let counter=1;
         var d=3;
         var hobbie="";
         var hobbie2="";
+        var id;
         
         function addnq(){
          name = document.getElementById('fname').value;
          qualification = document.getElementById('fq').value;
+         id = "fh"+counter;
+         hobbie = document.getElementById(id).value;
          var fetchname = document.getElementById('paragraph');
+         var header = `I,${name}, would like to apply for an internship at your organisation.<br>My Qualification is ${qualification}.`;
+         var body1;
+         var footer = ` Thanking you,<br>Your Sincerely<br>${name}`
          if(counter==1)
-         {
-         fetchname.innerHTML = `<p>I,${name}, would like to apply for an internship at your organisation.<br>
-         My Qualification is ${qualification}.<br>
-         My hobbies are ${hobbie}.<br>
-         Thanking you,<br>
-         Your Sincerely<br>
-           ${name}.</p>`;
-         }
-         else
-         {
-            fetchname.innerHTML = `<p>I,${name}, would like to apply for an internship at your organisation.<br>
-         My Qualification is ${qualification}.<br>
-         My hobbies are ${hobbie2}.<br>
-         Thanking you,<br>
-         Your Sincerely<br>
-           ${name}.</p>`;
-         }
-        }
-
-        function addHobbies(){
-            var fetchhobbies = document.getElementById('paragraph');
-            var id = "fh"+counter;
-            if(counter==1)
             {
-                hobbie = document.getElementById(id).value;
-                fetchhobbies.innerHTML=`I,${name}, would like to apply for an internship at your organisation.<br>
-                My Qualification is ${qualification}.<br>
-                My hobbie is ${hobbie}.<br>
-                Thanking you,<br>
-                Your Sincerely<br>
-                ${name}.`;
+                body1 = `My hobbies are ${hobbie}.`;
+                fetchname.innerHTML=`<p>${header}<br>
+                ${body1}<br>
+                ${footer}.</p>`;
             }
             if(counter>1)
             {
@@ -110,7 +89,7 @@
                     id="fh"+i;
                     if(i==1)
                     {
-                        hobbie2 = hobbie2+document.getElementById(id).value  
+                        hobbie2 = hobbie2+document.getElementById(id).value; 
                     }
                     else
                     {
@@ -120,29 +99,18 @@
              
                 id="fh"+counter;
                   hobbie2=hobbie2+"&"+document.getElementById(id).value;
-
-
-                fetchhobbies.innerHTML=`I,${name}, would like to apply for an internship at your organisation.<br>
-                My Qualification is ${qualification}.<br>
-                My hobbies are  ${hobbie2}.<br>
-                Thanking you,<br>
-                Your Sincerely<br>
-                ${name}.`
-
-
-            }
-            
-        
-            
-         
-
-        }
+                 body1 = `My hobbies are ${hobbie2}.`
+                fetchname.innerHTML = `<p>${header}<br>
+                ${body1}<br>
+                ${footer}.</p>`;
+           }
+    }
         function addrow(){
             var table = document.getElementById("myTable");
             var row = table.insertRow(d);
             var cell1 = row.insertCell(0);
             counter++;
-            row.innerHTML=`<p>   </p><td><input type="text" name="fh" id="fh${counter}" oninput="addHobbies()" placeholder="Add Hobbies..."  ></td>`;
+            row.innerHTML=`<p>   </p><td><input type="text" name="fh" id="fh${counter}" oninput="addnq()" placeholder="Add Hobbies..."  ></td>`;
             d++;
         }
     </script>
