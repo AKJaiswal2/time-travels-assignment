@@ -69,12 +69,24 @@
          name = document.getElementById('fname').value;
          qualification = document.getElementById('fq').value;
          var fetchname = document.getElementById('paragraph');
+         if(counter==1)
+         {
          fetchname.innerHTML = `<p>I,${name}, would like to apply for an internship at your organisation.<br>
+         My Qualification is ${qualification}.<br>
+         My hobbies are ${hobbie}.<br>
+         Thanking you,<br>
+         Your Sincerely<br>
+           ${name}.</p>`;
+         }
+         else
+         {
+            fetchname.innerHTML = `<p>I,${name}, would like to apply for an internship at your organisation.<br>
          My Qualification is ${qualification}.<br>
          My hobbies are ${hobbie2}.<br>
          Thanking you,<br>
          Your Sincerely<br>
            ${name}.</p>`;
+         }
         }
 
         function addHobbies(){
