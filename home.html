@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .px1{
+            
+            margin-top: 30px;
+            margin-left: 560px;
+            background: #CCCCCC;
+           height: 150px;
+           width: 400px;
+            position: relative;
+            
+            
+        }
+
+    </style>
+</head>
+<body>
+    <center>
+        <table border="4" id="myTable">
+            <thread>
+                <tr>
+                    <th>Name</th>
+                    <td><input type="text" name="fname" id="fname" oninput="add()"></td>
+                </tr>
+            </thread>
+            <tbody>
+                <tr>
+                    <th>Qualification</th>
+                    <td><input type="text" name="fq" id="fq" oninput="add()"></td>
+                </tr>
+                <tr id="hh">
+                    <th>Hobbie</th>
+                    <td><input type="text" name="fh" id="fh0" oninput="add()"></td>
+                </tr>
+                <tr  id="btna">
+                    <td><input type="button" name="button" id="btn" value="Add Hobbies" onclick="addrow()"></td>
+
+                </tr>
+            </tbody>
+            </table>
+    </center>
+
+    <div id="paragraph" class="px1" >
+     <p>I, ______, would like to apply for an internship at your organisation.<br>
+        My Qualification is __________.<br>
+        My hobbies are ______, ________ & __________.<br>
+        Thanking you,<br>
+        Your Sincerely<br>
+        _____________</p>
+
+    </div>
+
+    <script>
+        let i=2;
+        let d=3;
+        var hobbies;
+        var result="";
+        var id;
+        arr=[];
+        let b=0;
+        let j;
+        let c=0;
+        
+        function add(){
+            var name = document.getElementById('fname').value;
+            var qualification = document.getElementById('fq').value;
+            var result4;
+
+            id = "fh"+b;
+            hobbies= document.getElementById(id).value;
+            arr[b]=hobbies;
+            if(b==0)
+            {
+                result="";
+                result=result+arr[b];
+            }
+            else 
+            {
+                
+            for(j=b;j<arr.length;j++)
+            {
+
+                if(arr[j]!=0 && j<1)
+                result=result+arr[j];
+                if(arr[j]!=0 && j>=1)
+                result=result+","+arr[j];
+                 for(let k=0;k<result.length;k++)
+               {
+                if(result.charAt(k)==',')
+                {
+                    c=k;
+                }
+
+               }
+            let result2=result.slice(0,c);
+            let result3=result.slice(c+1,result.length);
+            result4=result2+"&"+result3;
+            
+                
+
+            }
+        }
+            
+           
+           
+            
+           
+        
+           
+
+           if(arr.length==1)
+           {
+            let fetch = document.getElementById('paragraph');
+            fetch.innerHTML=`I,${name}, would like to apply for an internship at your organisation.
+        My Qualification is ${qualification}.
+        My hobbie is ${result}.
+        Thanking you,
+        Your Sincerely
+        ${name}.`; 
+
+           }
+           else
+           {
+           
+    
+            let fetch = document.getElementById('paragraph');
+            fetch.innerHTML=`I,${name}, would like to apply for an internship at your organisation.
+        My Qualification is ${qualification}.
+        My hobbies are ${result4}.
+        Thanking you,
+        Your Sincerely
+        ${name}.`;            
+        }
+    }
+
+       
+
+        
+    
+        function addrow(){
+            
+            var table = document.getElementById("myTable");
+            var row = table.insertRow(d);
+            var cell1 = row.insertCell(0);
+            row.innerHTML=`<p>   </p><td><input type="text" name="fh" id="fh${i-1}" onchange="add()"  placeholder="Add Hobbies..."  ></td>`;
+            
+            b++;
+            i++;
+            d++;
+            
+
+            
+            
+
+        }
+
+
+    </script>
+    
+</body>
+</html>
