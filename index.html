@@ -77,9 +77,6 @@
          if(counter==1)
             {
                 body1 = `My hobbie is ${hobbie}.`;
-                fetchname.innerHTML=`<p>${header}<br>
-                ${body1}<br>
-                ${footer}.</p>`;
             }
             if(counter>1)
             {
@@ -100,10 +97,13 @@
                 id="fh"+counter;
                   hobbie2=hobbie2+"&"+document.getElementById(id).value;
                  body1 = `My hobbies are ${hobbie2}.`
-                fetchname.innerHTML = `<p>${header}<br>
+           }
+
+           fetchname.innerHTML = `<p>${header}<br>
                 ${body1}<br>
                 ${footer}.</p>`;
-           }
+
+           
     }
         function addrow(){
             var table = document.getElementById("myTable");
